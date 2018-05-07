@@ -14,12 +14,14 @@ def task(n):
 
 if __name__ == '__main__':
     from j9 import Queue
+    
     q = Queue()
+    q.start()
+    
     q.enqueue(task, args=(2,))
     q.enqueue(task, args=(1,))
     q.enqueue(task, args=(3,))
     
-    q.start()
     
     while True:
         time.sleep(1)   # Do Something
