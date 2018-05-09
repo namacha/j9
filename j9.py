@@ -6,17 +6,22 @@ import time
 
 class Queue:
 
+    JOB_ID = 0
+
     def __init__(self):
         self._task = []
         self.running = False
 
     def enqueue(self, func, args=()):
-        self._task.append((func, args))
+        self.JOB_ID += 1
+        self._task.append((self.JOB_ID, func, args))
+        return self.JOB_ID
 
     def _do(self):
         if self._task:
-            func, args = self._task.pop(0)
-            func(*args)
+            job_id, func, args = self._task.pop(0)
+            result = func(*args)
+            self.result[job_id] = result
         else:
             time.sleep(0.1)
 
