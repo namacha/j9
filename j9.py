@@ -11,6 +11,7 @@ class Queue:
     def __init__(self):
         self._task = []
         self.running = False
+        self.result = {}
 
     def enqueue(self, func, args=()):
         self.JOB_ID += 1
